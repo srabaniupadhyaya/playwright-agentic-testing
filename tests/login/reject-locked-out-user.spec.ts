@@ -3,7 +3,7 @@
 import { test, expect } from '../fixtures';
 import { LoginPage } from '../pages/login.page';
 
-test('should reject locked out user', async ({ page }) => {
+test('Should reject locked out user', async ({ page }) => {
   const loginPage = new LoginPage(page);
 
   // 1. Fill "Username" with "locked_out_user" and "Password" with "my_secret_code", click "Login"

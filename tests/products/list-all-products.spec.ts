@@ -3,7 +3,7 @@
 import { test, expect } from '../fixtures-authenticated';
 import { ProductsPage } from '../pages/products.page';
 
-test('should list all products', async ({ page }) => {
+test('Should list all products', async ({ page }) => {
   const productsPage = new ProductsPage(page);
 
   // 1. Load the Products page

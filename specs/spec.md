@@ -16,33 +16,33 @@ confirmation with the order total.
 
 **Seed:** `tests/seed.spec.ts`
 
-#### 1.1. should-login-with-valid-user
+#### 1.1. login-with-valid-user
 
-**File:** `tests/login/should-login-with-valid-user.spec.ts`
+**File:** `tests/login/login-with-valid-user.spec.ts`
 
 **Steps:**
   1. Fill "Username" with "standard_user" and "Password" with "my_secret_code", click "Login"
     - expect: a heading "Products" is visible
 
-#### 1.2. should-reject-invalid-credentials
+#### 1.2. reject-invalid-credentials
 
-**File:** `tests/login/should-reject-invalid-credentials.spec.ts`
+**File:** `tests/login/reject-invalid-credentials.spec.ts`
 
 **Steps:**
   1. Fill "Username" with "wrong_user" and "Password" with "wrong_pass", click "Login"
     - expect: text "Username and password do not match any user in this service" is visible
 
-#### 1.3. should-reject-locked-out-user
+#### 1.3. reject-locked-out-user
 
-**File:** `tests/login/should-reject-locked-out-user.spec.ts`
+**File:** `tests/login/reject-locked-out-user.spec.ts`
 
 **Steps:**
   1. Fill "Username" with "locked_out_user" and "Password" with "my_secret_code", click "Login"
     - expect: text "Sorry, this user has been locked out." is visible
 
-#### 1.4. should-logout
+#### 1.4. logout
 
-**File:** `tests/login/should-logout.spec.ts`
+**File:** `tests/login/logout.spec.ts`
 
 **Steps:**
   1. Fill "Username" with "standard_user" and "Password" with "my_secret_code", click "Login"
@@ -56,9 +56,9 @@ confirmation with the order total.
 
 **Seed:** `tests/seed-authenticated.spec.ts`
 
-#### 2.1. should-list-all-products
+#### 2.1. list-all-products
 
-**File:** `tests/products/should-list-all-products.spec.ts`
+**File:** `tests/products/list-all-products.spec.ts`
 
 **Steps:**
   1. Load the Products page
@@ -70,9 +70,9 @@ confirmation with the order total.
     - expect: "Codemify Onesie" heading is visible
     - expect: "Test.allTheThings() T-Shirt (Red)" heading is visible
 
-#### 2.2. should-update-cart-badge-on-add
+#### 2.2. update-cart-badge-on-add
 
-**File:** `tests/products/should-update-cart-badge-on-add.spec.ts`
+**File:** `tests/products/update-cart-badge-on-add.spec.ts`
 
 **Steps:**
   1. Click "Add to Cart" on "Codemify Backpack"
@@ -86,62 +86,62 @@ confirmation with the order total.
 
 **Seed:** `tests/seed-authenticated.spec.ts`
 
-#### 3.1. should-add-single-item
+#### 3.1. add-single-item
 
-**File:** `tests/cart/should-add-single-item.spec.ts`
+**File:** `tests/cart/add-single-item.spec.ts`
 
 **Steps:**
   1. Add "Codemify Backpack" to cart from Products, open the cart
     - expect: line item shows "$29.99 × 1 = $29.99"
     - expect: total is "$29.99"
 
-#### 3.2. should-sum-multiple-items
+#### 3.2. sum-multiple-items
 
-**File:** `tests/cart/should-sum-multiple-items.spec.ts`
+**File:** `tests/cart/sum-multiple-items.spec.ts`
 
 **Steps:**
   1. Add "Codemify Backpack" ($29.99) and "Codemify Bike Light" ($9.99) to cart, open the cart
     - expect: total is "$39.98"
 
-#### 3.3. should-increment-quantity
+#### 3.3. increment-quantity
 
-**File:** `tests/cart/should-increment-quantity.spec.ts`
+**File:** `tests/cart/increment-quantity.spec.ts`
 
 **Steps:**
   1. Add "Codemify Backpack" to cart, open the cart, click "+" on its line
     - expect: line item shows "$29.99 × 2 = $59.98"
     - expect: total is "$59.98"
 
-#### 3.4. should-decrement-quantity
+#### 3.4. decrement-quantity
 
-**File:** `tests/cart/should-decrement-quantity.spec.ts`
+**File:** `tests/cart/decrement-quantity.spec.ts`
 
 **Steps:**
   1. Add "Codemify Backpack" to cart twice, open the cart, click "−" on its line once
     - expect: line item shows "$29.99 × 1 = $29.99"
     - expect: total is "$29.99"
 
-#### 3.5. should-auto-remove-at-zero-quantity
+#### 3.5. auto-remove-at-zero-quantity
 
-**File:** `tests/cart/should-auto-remove-at-zero-quantity.spec.ts`
+**File:** `tests/cart/auto-remove-at-zero-quantity.spec.ts`
 
 **Steps:**
   1. Add "Codemify Backpack" to cart, open the cart, click "−" on its line once
     - expect: "Codemify Backpack" line item is not visible
     - expect: empty cart message is visible
 
-#### 3.6. should-remove-item-directly
+#### 3.6. remove-item-directly
 
-**File:** `tests/cart/should-remove-item-directly.spec.ts`
+**File:** `tests/cart/remove-item-directly.spec.ts`
 
 **Steps:**
   1. Add "Codemify Backpack" and "Codemify Bike Light" to cart, open the cart, click "Remove" on "Codemify Backpack"
     - expect: "Codemify Backpack" line item is not visible
     - expect: "Codemify Bike Light" line item is still visible
 
-#### 3.7. should-show-empty-cart-state
+#### 3.7. show-empty-cart-state
 
-**File:** `tests/cart/should-show-empty-cart-state.spec.ts`
+**File:** `tests/cart/show-empty-cart-state.spec.ts`
 
 **Steps:**
   1. Open the cart without adding any items
@@ -154,35 +154,35 @@ confirmation with the order total.
 
 **Seed:** `tests/seed-authenticated.spec.ts`
 
-#### 4.1. should-block-empty-submission
+#### 4.1. block-empty-submission
 
-**File:** `tests/checkout/should-block-empty-submission.spec.ts`
+**File:** `tests/checkout/block-empty-submission.spec.ts`
 
 **Steps:**
   1. Add "Codemify Backpack" to cart, proceed to checkout, click "Complete Order" without filling any field
     - expect: the "First Name *" field receives focus (native required validation blocks submission)
     - expect: no "Order Placed Successfully!" confirmation appears
 
-#### 4.2. should-place-order-successfully
+#### 4.2. place-order-successfully
 
-**File:** `tests/checkout/should-place-order-successfully.spec.ts`
+**File:** `tests/checkout/place-order-successfully.spec.ts`
 
 **Steps:**
   1. Add "Codemify Backpack" to cart, proceed to checkout, fill all shipping and payment fields, click "Complete Order"
     - expect: "Order Placed Successfully!" heading is visible
     - expect: order total text contains "$29.99"
 
-#### 4.3. should-clear-cart-after-order
+#### 4.3. clear-cart-after-order
 
-**File:** `tests/checkout/should-clear-cart-after-order.spec.ts`
+**File:** `tests/checkout/clear-cart-after-order.spec.ts`
 
 **Steps:**
   1. Add "Codemify Backpack" to cart, complete checkout, click "Continue Shopping", open the cart again
     - expect: empty cart message is visible
 
-#### 4.4. should-cancel-checkout
+#### 4.4. cancel-checkout
 
-**File:** `tests/checkout/should-cancel-checkout.spec.ts`
+**File:** `tests/checkout/cancel-checkout.spec.ts`
 
 **Steps:**
   1. Add "Codemify Backpack" to cart, proceed to checkout, click "Cancel"

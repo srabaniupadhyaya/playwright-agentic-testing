@@ -3,7 +3,7 @@
 import { test, expect } from '../fixtures';
 import { LoginPage } from '../pages/login.page';
 
-test('should reject invalid credentials', async ({ page }) => {
+test('Should reject invalid credentials', async ({ page }) => {
   const loginPage = new LoginPage(page);
 
   // 1. Fill "Username" with "wrong_user" and "Password" with "wrong_pass", click "Login"

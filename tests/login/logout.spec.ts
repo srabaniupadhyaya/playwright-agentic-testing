@@ -3,7 +3,7 @@
 import { test, expect } from '../fixtures';
 import { LoginPage } from '../pages/login.page';
 
-test('should logout', async ({ page }) => {
+test('Should logout', async ({ page }) => {
   const loginPage = new LoginPage(page);
 
   // 1. Fill "Username" with "standard_user" and "Password" with "my_secret_code", click "Login"

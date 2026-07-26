@@ -60,3 +60,12 @@ assertions — keep `expect(...)` calls in the `.spec.ts` files so test intent
 stays visible there. A POM method should either return a `Locator` (for the
 test to assert on) or perform a user action (`login()`, `addToCart()`), not
 both silently combine an action with a pass/fail check.
+
+**Naming: `should-` goes in the test title, not the filename.** Spec
+filenames don't need a `should-` prefix (this deviates from the
+`playwright-cli` skill's default kebab-case-matches-filename convention,
+e.g. `login-with-valid-user.spec.ts`, not
+`should-login-with-valid-user.spec.ts`). The `test()` title string is what
+must start with `Should` (capitalized), e.g. `test('Should login with valid
+user', ...)`. Keep `specs/spec.md` and `specs/progress.md` scenario names in
+sync with the filename (no prefix) when adding or renaming a spec.

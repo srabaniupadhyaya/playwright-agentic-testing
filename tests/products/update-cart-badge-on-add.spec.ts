@@ -3,7 +3,7 @@
 import { test, expect } from '../fixtures-authenticated';
 import { ProductsPage } from '../pages/products.page';
 
-test('should update cart badge on add', async ({ page }) => {
+test('Should update cart badge on add', async ({ page }) => {
   const productsPage = new ProductsPage(page);
 
   // 1. Click "Add to Cart" on "Codemify Backpack"

@@ -20,10 +20,10 @@ npx playwright test
 npx playwright test --project=chromium
 
 # Run a single spec file
-npx playwright test tests/login/should-login-with-valid-user.spec.ts --project=chromium
+npx playwright test tests/login/login-with-valid-user.spec.ts --project=chromium
 
 # Run a single test by line number
-npx playwright test tests/login/should-login-with-valid-user.spec.ts:6 --project=chromium
+npx playwright test tests/login/login-with-valid-user.spec.ts:6 --project=chromium
 
 # Open the HTML report from the last run
 npx playwright show-report
