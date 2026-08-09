@@ -2,6 +2,11 @@
   "attribution": {
     "commit": ""
   },
+  "statusLine": {
+    "type": "command",
+    "command": "node .claude/statusline.js",
+    "refreshInterval": 2
+  },
   "permissions": {
     "allow": [
       "Bash(git diff*)",
