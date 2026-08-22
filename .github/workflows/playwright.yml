@@ -4,6 +4,7 @@ on:
     branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
+  workflow_dispatch: {}
 jobs:
   test:
     timeout-minutes: 60
@@ -17,8 +18,32 @@ jobs:
       run: npm ci
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+    - name: Create config
+      env:
+        DEMO_BASE_URL: ${{ vars.DEMO_BASE_URL }}
+        DEMO_APP_PATH: ${{ vars.DEMO_APP_PATH }}
+        DEMO_USERNAME: ${{ vars.DEMO_USERNAME }}
+        DEMO_PASSWORD: ${{ vars.DEMO_PASSWORD }}
+      run: |
+        cat > config/config.json <<EOF
+        {
+          "environment": "ci",
+          "baseUrl": "${DEMO_BASE_URL}",
+          "demoAppPath": "${DEMO_APP_PATH}",
+          "credentials": {
+            "username": "${DEMO_USERNAME}",
+            "password": "${DEMO_PASSWORD}"
+          },
+          "timeouts": {
+            "defaultTimeout": 30000,
+            "navigationTimeout": 30000,
+            "actionTimeout": 15000
+          },
+          "headless": true
+        }
+        EOF
     - name: Run Playwright tests
-      run: npx playwright test
+      run: npm run test:ci
     - uses: actions/upload-artifact@v4
       if: ${{ !cancelled() }}
       with:
