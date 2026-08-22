@@ -1,5 +1,5 @@
 {
-  "name": "playwright-cli-explore",
+  "name": "playwright-agentic-testing",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -13,8 +13,8 @@
     "test:webkit": "playwright test --project=webkit",
     "test:ci": "playwright test --reporter=line,html",
     "test:docker": "docker run --rm -v \"$(pwd)\":/work -w /work mcr.microsoft.com/playwright:v1.61.1-noble npx playwright test",
-    "docker:build": "docker build -t playwright-cli-explore .",
-    "docker:run": "docker run --rm playwright-cli-explore",
+    "docker:build": "docker build -t playwright-agentic-testing .",
+    "docker:run": "docker run --rm playwright-agentic-testing",
     "report": "playwright show-report",
     "install:browsers": "playwright install --with-deps"
   },
