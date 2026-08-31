@@ -4,8 +4,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "node .claude/statusline.js",
-    "refreshInterval": 2
+    "command": "node .claude/statusline.js"
   },
   "permissions": {
     "allow": [
@@ -31,6 +30,27 @@
       "Bash(git push*)",
       "Bash(git branch -D *)",
       "Bash(git commit --amend*)"
+    ]
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node -e \"let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const j=JSON.parse(d);const f=(j.tool_input&&j.tool_input.file_path)||(j.tool_response&&j.tool_response.filePath)||'';if(f)process.stdout.write(f)}catch(e){}})\" | { read -r f; if [ -n \"$f\" ]; then npx prettier --ignore-unknown --write \"$f\" 2>&1; fi; }",
+            "statusMessage": "Formatting with prettier...",
+            "timeout": 30
+          },
+          {
+            "type": "command",
+            "command": "node -e \"let d='';process.stdin.on('data',c=>d+=c);process.stdin.on('end',()=>{try{const j=JSON.parse(d);const f=(j.tool_input&&j.tool_input.file_path)||(j.tool_response&&j.tool_response.filePath)||'';process.exit(/\\.tsx?$/.test(f)?0:1)}catch(e){process.exit(1)}})\" && npx tsc --noEmit 2>&1 | tail -n 30",
+            "statusMessage": "Type-checking with tsc...",
+            "timeout": 60
+          }
+        ]
+      }
     ]
   }
 }

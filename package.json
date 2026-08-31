@@ -16,7 +16,9 @@
     "docker:build": "docker build -t playwright-agentic-testing .",
     "docker:run": "docker run --rm playwright-agentic-testing",
     "report": "playwright show-report",
-    "install:browsers": "playwright install --with-deps"
+    "install:browsers": "playwright install --with-deps",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "keywords": [],
   "author": "",
@@ -25,6 +27,7 @@
   "devDependencies": {
     "@playwright/cli": "^0.1.15",
     "@playwright/test": "^1.61.1",
-    "@types/node": "^26.1.0"
+    "@types/node": "^26.1.0",
+    "prettier": "^3.9.6"
   }
 }

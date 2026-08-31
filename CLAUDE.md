@@ -101,7 +101,10 @@ proceeding.
 
 Run `npx tsc --noEmit` before every commit — it must pass with no errors.
 (There is no lint/`flint` script in this repo yet; this is the only
-pre-commit check currently enforceable.)
+pre-commit check currently enforceable.) A `.githooks/pre-commit` hook
+enforces this automatically once enabled — run
+`git config core.hooksPath .githooks` once per clone (`git commit
+--no-verify` bypasses it if ever needed).
 
 Use a semantic label prefix on every commit subject: `fix`, `feat`, `chore`,
 `docs`, `test`, or `devops` (e.g. `fix: dedupe auth storage-state path`).
