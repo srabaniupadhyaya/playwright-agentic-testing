@@ -1,0 +1,17 @@
+#!/bin/sh
+# Pre-commit hook: enforce the CLAUDE.md rule "npx tsc --noEmit must pass
+# before every commit". Installed via `git config core.hooksPath .githooks`
+# (see README/CLAUDE.md).
+
+echo "Running npx tsc --noEmit..."
+npx tsc --noEmit
+status=$?
+
+if [ $status -ne 0 ]; then
+  echo ""
+  echo "tsc failed - commit aborted. Fix the type errors above, or skip this check with:"
+  echo "  git commit --no-verify"
+  exit 1
+fi
+
+exit 0
