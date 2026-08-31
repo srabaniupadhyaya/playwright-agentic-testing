@@ -10,6 +10,6 @@ test('Should reject invalid credentials', async ({ page }) => {
   await loginPage.login('wrong_user', 'wrong_pass');
 
   await expect(
-    loginPage.errorMessage('Username and password do not match any user in this service')
+    loginPage.errorMessage('Username and password do not match any user in this service'),
   ).toBeVisible();
 });

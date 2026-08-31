@@ -1,0 +1,12 @@
+node_modules
+playwright-report
+test-results
+.playwright
+package-lock.json
+
+# Third-party skill docs and other markdown/docs are hand-formatted, not code
+*.md
+.claude/
+.github/
+docs/
+specs/
