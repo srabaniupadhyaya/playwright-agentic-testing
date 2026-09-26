@@ -12,7 +12,7 @@
     "test:firefox": "playwright test --project=firefox",
     "test:webkit": "playwright test --project=webkit",
     "test:ci": "playwright test --reporter=line,html",
-    "test:docker": "docker run --rm -v \"$(pwd)\":/work -w /work mcr.microsoft.com/playwright:v1.61.1-noble npx playwright test",
+    "test:docker": "docker run --rm -v ./:/work -w /work mcr.microsoft.com/playwright:v1.61.1-noble npx playwright test",
     "docker:build": "docker build -t playwright-agentic-testing .",
     "docker:run": "docker run --rm playwright-agentic-testing",
     "report": "playwright show-report",
