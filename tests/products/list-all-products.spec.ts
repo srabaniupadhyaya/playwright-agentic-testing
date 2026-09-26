@@ -2,14 +2,15 @@
 // seed: tests/seed-authenticated.spec.ts
 import { test, expect } from '../fixtures-authenticated';
 import { ProductsPage } from '../pages/products.page';
+import { PRODUCTS } from '../test-data';
 
 test('Should list all products', async ({ page }) => {
   const productsPage = new ProductsPage(page);
 
   // 1. Load the Products page
   await expect(productsPage.itemCount).toBeVisible();
-  await expect(productsPage.productHeading('Codemify Backpack')).toBeVisible();
-  await expect(productsPage.productHeading('Codemify Bike Light')).toBeVisible();
+  await expect(productsPage.productHeading(PRODUCTS.backpack.name)).toBeVisible();
+  await expect(productsPage.productHeading(PRODUCTS.bikeLight.name)).toBeVisible();
   await expect(productsPage.productHeading('Codemify Bolt T-Shirt')).toBeVisible();
   await expect(productsPage.productHeading('Codemify Fleece Jacket')).toBeVisible();
   await expect(productsPage.productHeading('Codemify Onesie')).toBeVisible();

@@ -149,3 +149,7 @@ Never amend commits, force-push, or push to a remote without explicit instructio
 - Checkout's required fields use native HTML5 validation, not custom error
   text — assert via focus/`:invalid`, not `toBeVisible()` on error text.
 - A successful checkout clears the cart on return to Products.
+- Adding the same product twice merges into one cart line (quantity 2), not
+  two lines. An empty cart shows the text "Your cart is empty".
+- `getByRole('button', { name: 'Cart' })` substring-matches every "Add to Cart"
+  button on Products; use `ProductsPage.cartButton` (anchored regex) instead.
