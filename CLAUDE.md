@@ -28,10 +28,14 @@ npx playwright test tests/login/login-with-valid-user.spec.ts:6 --project=chromi
 # Open the HTML report from the last run
 npx playwright show-report
 
-# Debug a test interactively with playwright-cli (requires an interactive terminal)
-PLAYWRIGHT_HTML_OPEN=never npx playwright test <file> --debug=cli
-npx playwright-cli attach tw-XXXX
+# Explore the app live with playwright-cli (authenticated, matches the fixture)
+npx playwright-cli open <baseURL from config/config.json>
+npx playwright-cli state-load .playwright/.auth/user.json
 ```
+
+`--debug=cli` + `playwright-cli attach` does **not** work in this repo (verified
+2026-09-26: `@playwright/test` 1.61.1 vs `@playwright/cli` 0.1.15 — the test runs
+straight through, no pause). Use `open` + `state-load` as above instead.
 
 Before running tests for the first time, copy the example config (it holds
 public demo credentials, not real secrets, but the file itself is gitignored):
@@ -58,9 +62,9 @@ through this file, not hardcoded into test files.
   `/`, landing directly on the Products screen. Used by every other scenario
   group (`tests/products/*`, `tests/cart/*`, `tests/checkout/*`).
 - `tests/seed.spec.ts` / `tests/seed-authenticated.spec.ts` are minimal seed
-  tests (empty bodies) that exist as attach points for `playwright-cli`'s
-  `--debug=cli` / `attach` generation workflow — not tests with real
-  assertions themselves.
+  tests (empty bodies) meant as attach points for `playwright-cli`'s
+  `--debug=cli` / `attach` workflow (currently broken here, see Commands) —
+  not tests with real assertions themselves.
 
 All new scenario spec files must import `test`/`expect` from one of these two
 fixture files, never directly from `@playwright/test`.
