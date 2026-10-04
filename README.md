@@ -46,6 +46,13 @@ flowchart LR
         TESTS --> POM["tests/pages/*<br/>Login / Products / Cart"]
     end
 
+    subgraph CI["CI (GitHub Actions)"]
+        VARS["Repo variables<br/>DEMO_BASE_URL, DEMO_APP_PATH,<br/>DEMO_USERNAME, DEMO_PASSWORD"] --> WF["workflow writes<br/>config/config.json"]
+    end
+
+    WF -->|"replaces local cp"| CFG
+    WF -->|"npx playwright test"| PWC
+
     POM --> APP["Codemify Store<br/>(Vercel demo app)"]
     TESTS --> REPORT["HTML report + traces"]
 ```
