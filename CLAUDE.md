@@ -110,10 +110,32 @@ enforces this automatically once enabled — run
 `git config core.hooksPath .githooks` once per clone (`git commit
 --no-verify` bypasses it if ever needed).
 
-Use a semantic label prefix on every commit subject: `fix`, `feat`, `chore`,
-`docs`, `test`, or `devops` (e.g. `fix: dedupe auth storage-state path`).
+### Commit messages
+
+- Subject: `<label>: <imperative summary>` — labels are `fix`, `feat`,
+  `chore`, `docs`, `test`, `devops` (e.g. `fix: dedupe auth storage-state
+  path`). Lowercase, no trailing period, aim for ≤72 characters.
+- Body (optional): blank line after the subject, then explain *why* the change
+  was made, not what the diff already shows.
+- One logical change per commit; don't mix formatting-only changes with
+  behavior changes.
+- Scenario changes: update the matching `specs/spec.md` section in the same
+  commit as the `.spec.ts` change.
 
 Never amend commits, force-push, or push to a remote without explicit instruction.
+
+## Pull Requests
+
+- Branch from `master` with a descriptive kebab-case name; PRs target `master`.
+- Title follows the commit-subject format (`<label>: <summary>`).
+- Description has two parts: **Summary** (what and why, 1–3 bullets) and
+  **Test plan** (commands run, e.g. `npx playwright test --project=chromium`,
+  plus `npx tsc --noEmit` and `npm run format:check` results).
+- Before opening: `npx tsc --noEmit` and `npm run format:check` pass, and
+  affected specs pass in at least chromium.
+- Keep PRs focused; link the plan/spec in `docs/superpowers/` when one exists.
+- Reviews of Playwright changes use the `reviewing-playwright-prs` skill.
+- Open PRs only when explicitly asked; never merge them yourself.
 
 ## Notable app behavior worth remembering when writing tests
 
@@ -127,3 +149,7 @@ Never amend commits, force-push, or push to a remote without explicit instructio
 - Checkout's required fields use native HTML5 validation, not custom error
   text — assert via focus/`:invalid`, not `toBeVisible()` on error text.
 - A successful checkout clears the cart on return to Products.
+- Adding the same product twice merges into one cart line (quantity 2), not
+  two lines. An empty cart shows the text "Your cart is empty".
+- `getByRole('button', { name: 'Cart' })` substring-matches every "Add to Cart"
+  button on Products; use `ProductsPage.cartButton` (anchored regex) instead.
