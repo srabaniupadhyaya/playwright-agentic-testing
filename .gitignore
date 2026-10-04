@@ -25,4 +25,3 @@ Thumbs.db
 # Logs
 npm-debug.log*
 *.log
-docs/ci-github-actions.md
