@@ -51,7 +51,7 @@ flowchart LR
     end
 
     WF -->|"replaces local cp"| CFG
-    WF -->|"npx playwright test"| PWC
+    WF -->|"npm run test:ci"| PWC
 
     POM --> APP["Codemify Store<br/>(Vercel demo app)"]
     TESTS --> REPORT["HTML report + traces"]
