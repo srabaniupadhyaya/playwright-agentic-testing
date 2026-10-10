@@ -3,7 +3,7 @@
 Tracks generation status against `specs/spec.md`. Update this file whenever a
 scenario's spec file is written and passing.
 
-**Status: 6/17 scenarios generated (35%)**
+**Status: 15/17 scenarios generated (88%)**
 
 ## 1. Login — 4/4 done
 
@@ -21,19 +21,19 @@ scenario's spec file is written and passing.
 | 2.1 | list-all-products | `tests/products/list-all-products.spec.ts` | ✅ |
 | 2.2 | update-cart-badge-on-add | `tests/products/update-cart-badge-on-add.spec.ts` | ✅ |
 
-## 3. Cart — 0/7 done
+## 3. Cart — 7/7 done
 
 | # | Scenario | File | Status |
 |---|---|---|---|
-| 3.1 | add-single-item | `tests/cart/add-single-item.spec.ts` | ⏳ locators verified live, not written |
-| 3.2 | sum-multiple-items | `tests/cart/sum-multiple-items.spec.ts` | ❌ |
-| 3.3 | increment-quantity | `tests/cart/increment-quantity.spec.ts` | ❌ |
-| 3.4 | decrement-quantity | `tests/cart/decrement-quantity.spec.ts` | ❌ |
-| 3.5 | auto-remove-at-zero-quantity | `tests/cart/auto-remove-at-zero-quantity.spec.ts` | ❌ |
-| 3.6 | remove-item-directly | `tests/cart/remove-item-directly.spec.ts` | ❌ |
-| 3.7 | show-empty-cart-state | `tests/cart/show-empty-cart-state.spec.ts` | ❌ |
+| 3.1 | add-single-item | `tests/cart/add-single-item.spec.ts` | ✅ |
+| 3.2 | sum-multiple-items | `tests/cart/sum-multiple-items.spec.ts` | ✅ |
+| 3.3 | increment-quantity | `tests/cart/increment-quantity.spec.ts` | ✅ |
+| 3.4 | decrement-quantity | `tests/cart/decrement-quantity.spec.ts` | ✅ |
+| 3.5 | auto-remove-at-zero-quantity | `tests/cart/auto-remove-at-zero-quantity.spec.ts` | ✅ |
+| 3.6 | remove-item-directly | `tests/cart/remove-item-directly.spec.ts` | ✅ |
+| 3.7 | show-empty-cart-state | `tests/cart/show-empty-cart-state.spec.ts` | ✅ |
 
-`tests/pages/cart.page.ts` not yet created.
+`tests/pages/cart.page.ts` created.
 
 ## 4. Checkout — 2/4 done
 
