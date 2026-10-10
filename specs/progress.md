@@ -3,7 +3,7 @@
 Tracks generation status against `specs/spec.md`. Update this file whenever a
 scenario's spec file is written and passing.
 
-**Status: 15/17 scenarios generated (88%)**
+**Status: 16/17 scenarios generated (94%)**
 
 ## 1. Login — 4/4 done
 
@@ -35,13 +35,13 @@ scenario's spec file is written and passing.
 
 `tests/pages/cart.page.ts` created.
 
-## 4. Checkout — 2/4 done
+## 4. Checkout — 3/4 done
 
 | # | Scenario | File | Status |
 |---|---|---|---|
 | 4.1 | block-empty-submission | `tests/checkout/block-empty-submission.spec.ts` | ✅ |
 | 4.2 | place-order-successfully | `tests/checkout/place-order-successfully.spec.ts` | ✅ |
-| 4.3 | clear-cart-after-order | `tests/checkout/clear-cart-after-order.spec.ts` | ❌ |
+| 4.3 | clear-cart-after-order | `tests/checkout/clear-cart-after-order.spec.ts` | ✅ |
 | 4.4 | cancel-checkout | `tests/checkout/cancel-checkout.spec.ts` | ❌ |
 
 `tests/pages/checkout.page.ts` created.

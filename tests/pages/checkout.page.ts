@@ -9,6 +9,7 @@ export class CheckoutPage {
   readonly cancelButton: Locator;
   readonly orderConfirmation: Locator;
   readonly orderTotal: Locator;
+  readonly continueShoppingButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -19,6 +20,7 @@ export class CheckoutPage {
     this.orderConfirmation = page.getByRole('heading', { name: 'Order Placed Successfully!' });
     // The confirmation paragraph reads "Order Total: $29.99" (amount in a <strong>).
     this.orderTotal = page.getByText('Order Total:');
+    this.continueShoppingButton = page.getByRole('button', { name: 'Continue Shopping' });
   }
 
   field(label: string): Locator {
