@@ -69,3 +69,35 @@ e.g. `login-with-valid-user.spec.ts`, not
 must start with `Should` (capitalized), e.g. `test('Should login with valid
 user', ...)`. Keep `specs/spec.md` and `specs/progress.md` scenario names in
 sync with the filename (no prefix) when adding or renaming a spec.
+
+## How these rules are enforced
+
+The rules above are checked automatically in two places, so a violation is
+caught before it lands rather than in review.
+
+**1. Claude write-time hook** — `.claude/hooks/enforce-conventions.js`
+(registered as a `PreToolUse` hook in `.claude/settings.json`). It only
+inspects files under `tests/**/*.ts` that Claude writes or edits, and blocks
+the write (exit 2, reason fed back to Claude) when the content has:
+
+| Pattern                                   | Rule it enforces                           |
+| ----------------------------------------- | ------------------------------------------ |
+| `waitForTimeout(`                         | No hard waits                              |
+| `: any`, `as any`, `<any>`                | No `any`                                   |
+| `locator('//…')`, `xpath=`                | No XPath (locator priority)                |
+| `.only(`                                  | No focused tests committed                 |
+| `from '@playwright/test'` in `*.spec.ts`  | Specs import from the fixture files        |
+
+It does not run on edits you make yourself.
+
+**2. ESLint** — `eslint.config.mjs` (`typescript-eslint` +
+`eslint-plugin-playwright`). Run `npm run lint` (or `npm run lint:fix`). It
+covers everything above plus `prefer-web-first-assertions` (the
+"assertions, not manual polling" rule), `missing-playwright-await`, and
+`no-force-option`. It also runs in `.githooks/pre-commit` after `tsc` and
+before Prettier, so a failing lint blocks the commit
+(`git commit --no-verify` bypasses it).
+
+When you add a new convention to this file, add the matching hook pattern or
+ESLint rule too if it can be checked mechanically; otherwise it stays
+advisory.

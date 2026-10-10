@@ -104,8 +104,8 @@ proceeding.
 ## Commits
 
 Run `npx tsc --noEmit` before every commit — it must pass with no errors.
-(There is no lint/`flint` script in this repo yet; this is the only
-pre-commit check currently enforceable.) A `.githooks/pre-commit` hook
+Also run `npm run lint` (ESLint; see
+`docs/playwright-best-practices.md`). A `.githooks/pre-commit` hook
 enforces this automatically once enabled — run
 `git config core.hooksPath .githooks` once per clone (`git commit
 --no-verify` bypasses it if ever needed).
