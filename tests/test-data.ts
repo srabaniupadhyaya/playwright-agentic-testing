@@ -11,3 +11,30 @@ export const CART_EXPECTED = {
   backpackQty2: { line: `${PRODUCTS.backpack.price} × 2 = $59.98`, total: '$59.98' },
   backpackAndBikeLight: { total: '$39.98' },
 } as const;
+
+// Dummy shipping/payment values for the demo checkout form (no real card is charged).
+export interface CheckoutDetails {
+  firstName: string;
+  lastName: string;
+  email: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  cardNumber: string;
+  expiry: string;
+  cvv: string;
+}
+
+export const CHECKOUT_DETAILS: CheckoutDetails = {
+  firstName: 'Test',
+  lastName: 'User',
+  email: 'test.user@example.com',
+  address: '1 Main St',
+  city: 'Austin',
+  state: 'TX',
+  zip: '12345',
+  cardNumber: '4111111111111111',
+  expiry: '12/30',
+  cvv: '123',
+};
