@@ -51,6 +51,19 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/hooks/enforce-conventions.js",
+            "statusMessage": "Checking test conventions...",
+            "timeout": 10
+          }
+        ]
+      }
     ]
   }
 }
