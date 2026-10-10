@@ -6,6 +6,24 @@ on:
     branches: [ main, master ]
   workflow_dispatch: {}
 jobs:
+  lint:
+    timeout-minutes: 10
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: lts/*
+    - name: Install dependencies
+      run: npm ci
+    - name: Create config (needed for type-check)
+      run: cp config/config.example.json config/config.json
+    - name: Type-check
+      run: npx tsc --noEmit
+    - name: Lint
+      run: npm run lint
+    - name: Format check
+      run: npm run format:check
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
