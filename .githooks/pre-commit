@@ -14,6 +14,14 @@ if [ $status -ne 0 ]; then
   exit 1
 fi
 
+echo "Running npm run lint..."
+npm run lint
+if [ $? -ne 0 ]; then
+  echo ""
+  echo "ESLint failed - commit aborted. Run 'npm run lint:fix', or skip with: git commit --no-verify"
+  exit 1
+fi
+
 echo "Running npx prettier --check ..."
 npx prettier --check .
 status=$?
