@@ -86,7 +86,7 @@ Tracked in [`specs/progress.md`](specs/progress.md).
 | Login | 4 | done |
 | Products | 2 | done |
 | Cart | 7 | done |
-| Checkout | 4 | planned |
+| Checkout | 4 | 2 done, 2 planned |
 
 ## What I learned / trade-offs
 

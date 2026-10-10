@@ -3,7 +3,7 @@
 Tracks generation status against `specs/spec.md`. Update this file whenever a
 scenario's spec file is written and passing.
 
-**Status: 13/17 scenarios generated (76%)**
+**Status: 15/17 scenarios generated (88%)**
 
 ## 1. Login — 4/4 done
 
