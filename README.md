@@ -115,9 +115,10 @@ Tracked in [`specs/progress.md`](specs/progress.md).
 - **Known gap:** `update-cart-badge-on-add.spec.ts` failed once and never
   reproduced in 51 reruns. The suspect is a one-shot read of the badge count
   instead of a retrying assertion. Not fixed yet.
-- **Tooling caveat:** `--debug=cli` + `playwright-cli attach` doesn't pause
-  with this version pairing (`@playwright/test` 1.61.1 vs `@playwright/cli`
-  0.1.15), so live exploration uses `playwright-cli open` + `state-load`.
+- **Tooling caveat:** `--debug=cli` + `playwright-cli attach` works on
+  `@playwright/test` 1.64.1 / `@playwright/cli` 0.1.22, but only once the test
+  reaches a pause. The seed specs have empty bodies, so add `await page.pause();`
+  first, or use `playwright-cli open` + `state-load`.
 - **Only chromium is run for the sample report.** The suite is configured for
   chromium, firefox and webkit, and CI runs all three.
 

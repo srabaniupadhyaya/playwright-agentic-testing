@@ -33,9 +33,13 @@ npx playwright-cli open <baseURL from config/config.json>
 npx playwright-cli state-load .playwright/.auth/user.json
 ```
 
-`--debug=cli` + `playwright-cli attach` does **not** work in this repo (verified
-2026-09-26: `@playwright/test` 1.61.1 vs `@playwright/cli` 0.1.15 — the test runs
-straight through, no pause). Use `open` + `state-load` as above instead.
+`--debug=cli` + `playwright-cli attach` works (verified 2026-10-24 on
+`@playwright/test` 1.64.1 / `@playwright/cli` 0.1.22) **only if the test
+reaches a pause**: the seed specs have empty bodies and finish before pausing,
+so add `await page.pause();` to a temporary spec, run it with `--debug=cli`,
+then `playwright-cli attach <tw-id>` and pass `-s=<tw-id>` to later commands.
+The fixture's pause lands before `page.goto`; `step-over` once to reach the page.
+Otherwise use `open` + `state-load` as above. (It was broken on 1.61.1 / 0.1.15.)
 
 Before running tests for the first time, copy the example config (it holds
 public demo credentials, not real secrets, but the file itself is gitignored):
@@ -63,7 +67,7 @@ through this file, not hardcoded into test files.
   group (`tests/products/*`, `tests/cart/*`, `tests/checkout/*`).
 - `tests/seed.spec.ts` / `tests/seed-authenticated.spec.ts` are minimal seed
   tests (empty bodies) meant as attach points for `playwright-cli`'s
-  `--debug=cli` / `attach` workflow (currently broken here, see Commands) —
+  `--debug=cli` / `attach` workflow (need a `page.pause()` added, see Commands) —
   not tests with real assertions themselves.
 
 All new scenario spec files must import `test`/`expect` from one of these two
